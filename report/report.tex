@@ -1,11 +1,12 @@
 \documentclass[12pt,a4paper]{report}
 
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{setspace}
 \usepackage{amsmath}
 \usepackage{amssymb}
-
 \usepackage[italian]{babel}
 \usepackage[italian]{cleveref}
 
@@ -14,11 +15,124 @@
 
 \begin{document}
 
-\title{Argomento}
+\title{Progettazione e Sviluppo di un Sistema di File Sharing}
 \author{Alessandro Rebosio}
 
 \maketitle
 
+\pagenumbering{roman}
+
+% INTRODUZIONE
+\chapter*{Introduzione}
+\label{chap:introduzione}
+\addcontentsline{toc}{chapter}{Introduzione}
+% NOTE: Scrivi circa 1-2 pagine.
+% - Presenta il ruolo del Cloud Storage (es. Google Drive) nella gestione moderna dei dati.
+% - Spiega l'importanza di questi sistemi per la collaborazione e la persistenza dei dati.
+% - Dichiara l'obiettivo della tesina: realizzare un sistema di file sharing scalabile.
+% - Introduci la metodologia: il confronto tra una gestione classica su filesystem e una moderna basata su MinIO.
+
 \tableofcontents
+
+\cleardoublepage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+% CAPITOLO 1
+\chapter{Obiettivi e Requisiti di Progetto}
+\label{cap:obiettivi}
+
+\section{Requisiti Funzionali}
+% Descrivi le funzionalità core: upload/download dei file, registrazione e login utenti.
+
+\section{Requisiti Non Funzionali}
+% Focalizzati su sicurezza (protezione dei dati), scalabilità e manutenibilità del codice.
+
+\section{Vincoli Tecnologici}
+% Menziona l'uso di Docker per la containerizzazione e il limite temporale di sviluppo (2 settimane).
+
+% CAPITOLO 2
+\chapter{Architettura del Sistema}
+\label{cap:architettura}
+
+\section{Componenti del Sistema}
+% Descrivi il tech stack: Frontend (React), Backend (Node.js), Database (PostgreSQL).
+
+\section{Infrastruttura e Networking}
+% Spiega il ruolo di Nginx come Reverse Proxy e la comunicazione tra i container Docker.
+
+\section{Diagramma Architetturale}
+% Inserisci qui il riferimento al diagramma che mostra l'interazione tra i moduli.
+% 
+
+% CAPITOLO 3
+\chapter{Protocolli e Tecnologie Utilizzate}
+\label{cap:protocolli}
+
+\section{Comunicazione REST e Protocollo HTTP}
+% Spiega l'uso di HTTP per le API e la gestione dei file tramite multipart/form-data.
+
+\section{Persistenza dei Dati}
+% Introduci la differenza concettuale tra memorizzazione gerarchica (FS) e piatta (Object Storage).
+
+% CAPITOLO 4
+\chapter{Gestione Utenti e Autenticazione}
+\label{cap:autenticazione}
+
+\section{Modello di Autenticazione JWT}
+% Spiega come funziona il JSON Web Token per mantenere la sessione stateless.
+
+\section{Sicurezza delle Credenziali}
+% Descrivi l'hashing delle password (es. bcrypt) e il controllo degli accessi (Authorization).
+
+% CAPITOLO 5
+\chapter{Implementazione v1: Storage su Filesystem}
+\label{cap:v1_filesystem}
+
+\section{Struttura delle Directory}
+% Descrivi come il backend organizza i file localmente sul server.
+
+\section{Limiti della Soluzione Baseline}
+% Analizza le criticità: difficoltà di scaling orizzontale e rischi di corruzione del filesystem locale.
+
+% CAPITOLO 6
+\chapter{Implementazione v2: Storage Remoto con MinIO}
+\label{cap:v2_minio}
+
+\section{Introduzione all'Object Storage}
+% Spiega cos'è MinIO e la compatibilità con le API S3 di Amazon.
+
+\section{Integrazione Backend e S3 SDK}
+% Descrivi come il backend interagisce con il bucket remoto per le operazioni di I/O.
+
+% CAPITOLO 7
+\chapter{Confronto e Valutazione delle Prestazioni}
+\label{cap:confronto}
+
+\section{Analisi Qualitativa}
+% Inserisci una tabella comparativa su flessibilità, sicurezza e semplicità di gestione.
+
+\section{Test di Carico e Risultati}
+% Riporta i tempi di risposta misurati per upload di file di diverse dimensioni (small vs large).
+
+% CAPITOLO 8
+\chapter{Possibili Estensioni e Visione Futura}
+\label{cap:estensioni}
+
+\section{Versioning e Condivisione}
+% Come implementare il controllo di versione dei file e i link di condivisione pubblica/privata.
+
+\section{Migrazione su Cloud Reale}
+% Discuti la transizione da MinIO locale ad Amazon S3 o Google Cloud Storage.
+
+% CONCLUSIONE
+\chapter*{Conclusioni}
+\addcontentsline{toc}{chapter}{Conclusioni}
+% Riassumi l'esperienza: cosa hai imparato sulla gestione dei flussi binari e sui vantaggi dell'object storage.
+% Concludi confermando come la v2 risolva i limiti strutturali della v1.
+
+\bibliographystyle{plain}
+% \bibliography{report}
+\end{document}
 
 \end{document}
