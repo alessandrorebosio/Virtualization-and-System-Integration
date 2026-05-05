@@ -10,12 +10,23 @@ services:
       POSTGRES_USER: ${DB_USERNAME}
       POSTGRES_DB: ${DB_DATABASE_NAME}
       POSTGRES_INITDB_ARGS: '--data-checksums'
+    ports:
+      - "5432:5432"
     volumes:
       - ${DB_DATA_LOCATION}:/var/lib/postgresql/data
     shm_size: 128mb
     restart: always
     healthcheck:
       disable: false
+
+  cache:
+    container_name: cloud_redis
+    image: redis:7-alpine
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - ${REDIS_DATA_LOCATION}:/data
 
 volumes:
   pg_data:
