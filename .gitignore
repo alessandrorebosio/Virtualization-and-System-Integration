@@ -4,6 +4,9 @@
 # Ignore Visual Studio Code configuration folder
 .vscode/
 
+# Ignore .env
+.env 
+
 # Ingore LaTeX file
 *.toc
 *.synctex.gz
